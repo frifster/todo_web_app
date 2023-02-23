@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    todos: []
+    todos: [],
+    selectedTodo: null
 }
 
 export const todoSclice = createSlice({
@@ -18,20 +19,27 @@ export const todoSclice = createSlice({
         },
         updateTodo: (state, action) => {
             const todos = [...state.todos]
-            const foundIndex = todos.findIndex(todo => todo.id === action.payload.id)
+            console.log("action.payload", action.payload)
+            const foundIndex = todos.findIndex(todo => todo._id === action.payload.id)
+
+            console.log("foundindex", foundIndex)
 
             if (foundIndex !== -1) {
                 todos[foundIndex] = action.payload
             }
 
             state.todos = todos
+            state.selectedTodo = null
         },
         setTodos: (state, action) => {
             state.todos = action.payload
+        },
+        setSelectedTodo: (state, action) => {
+            state.selectedTodo = action.payload
         }
     },
 })
 
-export const { addTodo, deleteTodo, updateTodo, setTodos } = todoSclice.actions
+export const { addTodo, deleteTodo, updateTodo, setTodos, setSelectedTodo } = todoSclice.actions
 
 export default todoSclice.reducer
