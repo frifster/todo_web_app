@@ -13,9 +13,13 @@ export const todoSclice = createSlice({
             state.todos = [...state.todos, action.payload]
         },
         deleteTodo: (state, action) => {
+            console.log("delete action.payload", action.payload)
             const todos = [...state.todos]
-            const newTodos = todos.filter(todo => todo.id !== action.payload.todoId)
+            console.log({ todos })
+            const newTodos = todos.filter(todo => todo._id !== action.payload)
+            console.log({ newTodos })
             state.todos = newTodos
+            state.selectedTodo = null
         },
         updateTodo: (state, action) => {
             const todos = [...state.todos]

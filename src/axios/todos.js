@@ -16,7 +16,16 @@ export const apiUpdateTodo = async (token, todo) => {
     const res = await instance.patch('/todo/update', { id: todo.id, title: todo.title, text: todo.text })
 
     if (res.data) {
-        console.log("res.data", res.data)
+        return res.data
+    }
+}
+
+export const apiDeleteTodo = async (token, todoId) => {
+    const instance = axiosBuilder(token);
+
+    const res = await instance.post('/todo/delete', { id: todoId })
+
+    if (res.data) {
         return res.data
     }
 }
