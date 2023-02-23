@@ -9,7 +9,7 @@ export const todoSclice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
-            state.todos = [...state.todos, action.payload.todo]
+            state.todos = [...state.todos, action.payload]
         },
         deleteTodo: (state, action) => {
             const todos = [...state.todos]
@@ -26,9 +26,12 @@ export const todoSclice = createSlice({
 
             state.todos = todos
         },
+        setTodos: (state, action) => {
+            state.todos = action.payload
+        }
     },
 })
 
-export const { addTodo, deleteTodo, updateTodo } = todoSclice.actions
+export const { addTodo, deleteTodo, updateTodo, setTodos } = todoSclice.actions
 
 export default todoSclice.reducer

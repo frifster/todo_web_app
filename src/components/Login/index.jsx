@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { authLogin } from '../../thunks/authThunks'
 import { TODO_ACCESS_TOKEN } from '../../constants'
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const authState = useSelector((state) => state.auth.authState)
     const dispatch = useDispatch()
 
     const handleUsername = (e) => {
@@ -32,7 +31,6 @@ function Login() {
         if (!username || !password) {
             return;
         }
-        console.log({ username, password })
     }
 
 
@@ -55,11 +53,6 @@ function Login() {
                 <button className="btn btn-accent" onClick={handleOnLoginClick}>Login</button>
                 <button className="btn btn-primary" onClick={handleOnRegisterClick}>Register</button>
             </div>
-
-            <div className="flex gap-5">
-                {authState}
-            </div>
-
         </div>
     )
 }

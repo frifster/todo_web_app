@@ -8,7 +8,8 @@ export const FULFILLED_LOGIN = 'FULFILLED_LOGIN'
 const initialState = {
     isLoggedIn: false,
     user: null,
-    authState: null
+    authState: null,
+    accessToken: ''
 }
 
 export const authSlice = createSlice({
@@ -24,6 +25,9 @@ export const authSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload
             state.isLoggedIn = true
+        },
+        setAccessToken: (state, action) => {
+            state.accessToken = action.payload
         },
     },
     extraReducers: builder => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_API_URL } from "./constants"
+import { BASE_API_URL, axiosBuilder } from "./constants"
 
 export const apiLogin = async (username, password) => {
     const res = await axios.post(`${BASE_API_URL}/auth/login`, { username, password })
@@ -9,13 +9,6 @@ export const apiLogin = async (username, password) => {
     }
 
     return new Error('Invalid Login Details')
-}
-
-export const axiosBuilder = token => {
-    return axios.create({
-        baseURL: BASE_API_URL,
-        headers: { 'Authorization': 'Bearer ' + token }
-    });
 }
 
 export const getUserByToken = async (token) => {
