@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AddTodo from './AddTodo'
 import ViewTodos from './ViewTodos'
+import Logout from '../Logout'
+import Welcome from '../Welcome'
 
 function TodoApplication() {
     return (
-        <div>
-            <h1 className='mb-5'>Todos</h1>
-            <AddTodo />
+        <div className='grid grid-cols-12'>
+            <Welcome />
             <ViewTodos />
+            <AddTodo />
+            <Logout />
         </div>
     )
 }

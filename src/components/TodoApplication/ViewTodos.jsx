@@ -19,16 +19,15 @@ function ViewTodos() {
     }
 
     return (
-        <div className='todo-container p-5'>
-            <h1>Your current todos:</h1>
+        <div className='grid gap-5 p-5 col-span-8'>
+            <h1>{todos.length ? "Your current todos:" : "You currently have no todos."}</h1>
             {
                 todos.map((todo, index) => {
                     return (
-                        <div key={todo._id} className='text-left p-2' onClick={() => handleTodoClick(todo)} htmlFor="my-edit-modal">
-                            <label htmlFor="my-edit-modal" className='cursor-pointer'><h2 className='font-bold'>{index + 1}. {todo.title}</h2>
+                        <div key={todo._id} className='text-left p-5 hover:text-green-600 hover:bg-black border-collapse border-solid border' onClick={() => handleTodoClick(todo)} htmlFor="my-edit-modal">
+                            <label htmlFor="my-edit-modal" className='cursor-pointer'><h2 className='font-bold'>{todo.title}</h2>
                                 <p>{todo.text}</p>
                             </label>
-                            <div className="divider"></div>
                         </div>
                     )
                 })

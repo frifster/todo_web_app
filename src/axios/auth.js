@@ -11,6 +11,16 @@ export const apiLogin = async (username, password) => {
     return new Error('Invalid Login Details')
 }
 
+export const apiRegister = async (username, password) => {
+    const res = await axios.post(`${BASE_API_URL}/register`, { username, password })
+
+    if (res.data) {
+        return res.data
+    }
+
+    return new Error('Invalid Params')
+}
+
 export const getUserByToken = async (token) => {
     const instance = axiosBuilder(token);
 

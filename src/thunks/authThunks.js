@@ -1,10 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { apiLogin, getUserByToken } from '../axios/auth'
+import { apiLogin, apiRegister, getUserByToken } from '../axios/auth'
 import { setAccessToken, setUser } from '../store/authSlice'
 
-export const authLogin = createAsyncThunk('auth/login', async ({ username, password }) => {
+export const authLogin = createAsyncThunk('auth/login', async ({ username, password }, { dispatch }) => {
     const response = await apiLogin(username, password)
     if (response) {
+        dispatch(refreshLoginWithToken(response.access_token))
+        return response.access_token
+    }
+})
+
+export const authRegister = createAsyncThunk('auth/register', async ({ username, password }, { dispatch }) => {
+    const response = await apiRegister(username, password)
+    if (response) {
+        dispatch(refreshLoginWithToken(response.access_token))
         return response.access_token
     }
 })

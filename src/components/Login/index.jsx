@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { authLogin } from '../../thunks/authThunks'
+import { authLogin, authRegister } from '../../thunks/authThunks'
 import { TODO_ACCESS_TOKEN } from '../../constants'
 
 function Login() {
@@ -27,9 +27,15 @@ function Login() {
         }
     }
 
-    const handleOnRegisterClick = () => {
+    const handleOnRegisterClick = async () => {
         if (!username || !password) {
             return;
+        }
+
+        const accessToken = await dispatch(authRegister({ username, password })).unwrap()
+
+        if (accessToken) {
+            localStorage.setItem(TODO_ACCESS_TOKEN, accessToken)
         }
     }
 

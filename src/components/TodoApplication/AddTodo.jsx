@@ -16,12 +16,22 @@ function AddTodo() {
             text: todoText
         }
         dispatch(addNewTodo({ token: accessToken, todo: newTodo })).unwrap()
+        setTodoTitle('');
+        setTodoText('');
         setOpenModal(false)
     }
+
+    const toggleModal = () => {
+        if (openModal) {
+            return setOpenModal(false)
+        }
+        setOpenModal(true)
+    }
+
     return (
-        <>
-            <label htmlFor="my-modal" className="btn" onClick={e => setOpenModal(true)}>Add new todo</label>
-            <input type="checkbox" id="my-modal" className="modal-toggle" checked={openModal} />
+        <div>
+            <label htmlFor="my-modal" className="btn">Add new todo</label>
+            <input type="checkbox" id="my-modal" className="modal-toggle" checked={openModal} onChange={toggleModal} />
             <div className="modal">
                 <div className="modal-box p-10 grid gap-5">
                     <h2>Add new Todo</h2>
@@ -29,11 +39,11 @@ function AddTodo() {
                     <textarea value={todoText} onChange={e => setTodoText(e.target.value)} className="textarea textarea-accent w-full" placeholder='Todo details'></textarea>
                     <div className="modal-action">
                         <button className="btn btn-accent" onClick={handleOnTodoSave}>Save</button>
-                        <label htmlFor="my-modal" className="btn" onClick={e => setOpenModal(false)}>Close</label>
+                        <label htmlFor="my-modal" className="btn" >Close</label>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
